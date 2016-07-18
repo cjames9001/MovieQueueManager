@@ -1,0 +1,4 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\.mof\shell\open\command]
+@="C:\\Users\\Corey\\Documents\\Visual Studio 2010\\Projects\\QueueManager\\MovieQueueManagerGUI\\bin\\Debug\\MovieQueueManagerGUI.exe %1"
