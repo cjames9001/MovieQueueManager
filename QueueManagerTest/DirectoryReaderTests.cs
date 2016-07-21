@@ -5,7 +5,7 @@ using QueueManager;
 namespace QueueManagerTest
 {
     [TestFixture]
-    public class NetflixReaderTests
+    public class DirectoryReaderTests
     {
         private DirectoryReader _directoryReader;
         private string path;
