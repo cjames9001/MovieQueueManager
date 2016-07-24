@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using QueueManager;
 
@@ -25,6 +23,7 @@ namespace QueueManagerTest
         [Test]
         public void TestSaveAndLoadFile()
         {
+            //TODO: This and the invalid file below are not cleaned up after a test is run.
             _queueFileManager.SaveFile("NewFile", _movieList);
             Assert.AreEqual(_queueFileManager.OpenFile("NewFile"), _movieList);
         }
