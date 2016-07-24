@@ -2,9 +2,7 @@
 using NUnit.Framework;
 using QueueManager;
 using System.IO;
-using System.Text;
 using System;
-
 
 namespace QueueManagerTest
 {
@@ -15,28 +13,32 @@ namespace QueueManagerTest
         private string upperLevelFolderName;
         private string pathString;
         private string appendedPathString;
-        private string[] filesInUpperLevelFolder = new string[4] { "a1.iso", "a2.iso", "a3.iso", "a4.iso - Shortcut.lnk" };
+        private List<string> filesInUpperLevelFolder;
 
         [SetUp]
         public void SetUp()
         {
             _directoryReader = new DirectoryReader();
             upperLevelFolderName = @"..\..\TestDir\";
-            pathString = System.IO.Path.GetFullPath(upperLevelFolderName);
-            //Create folder
-            System.IO.Directory.CreateDirectory(pathString);
-            //Create files in folder
-            for(int i = 0; i < filesInUpperLevelFolder.Length; i++)
+            pathString = Path.GetFullPath(upperLevelFolderName);
+            Directory.CreateDirectory(pathString);
+            filesInUpperLevelFolder = new List<string> { "a1.iso", "a2.iso", "a3.iso", "a4.iso - Shortcut.lnk" };
+            foreach (string file in filesInUpperLevelFolder)
             {
-                appendedPathString = System.IO.Path.Combine(pathString, filesInUpperLevelFolder[i]);
-                System.IO.File.Create(appendedPathString);
+                appendedPathString = Path.Combine(pathString, file);
+                File.Create(appendedPathString);
             }
         }
 
         [Test]
         public void TestAddFilesInDirectoryToList()
         {
-            Assert.AreEqual(new List<string> { { upperLevelFolderName + "a1.iso" }, { upperLevelFolderName + "a2.iso" }, { upperLevelFolderName + "a3.iso" }, { upperLevelFolderName + "a4.iso - Shortcut.lnk" } }, _directoryReader.GetListOfMoviesFromDirectory(upperLevelFolderName));
+            List<string> testList = new List<string>();
+            foreach(string fileName in filesInUpperLevelFolder)
+            {
+                testList.Add(upperLevelFolderName + fileName);
+            }
+            Assert.AreEqual(testList, _directoryReader.GetListOfMoviesFromDirectory(upperLevelFolderName));
         }
 
         [Test]
@@ -58,13 +60,13 @@ namespace QueueManagerTest
             Dictionary<string, string> dictionaryOfPathsAndNames = _directoryReader.CreateDictionaryForNamesAndPaths(_directoryReader.GetListOfMoviesFromDirectory(upperLevelFolderName));
             Assert.AreEqual(new List<string> { { "a1" }, { "a2" }, { "a3" }, { "a4" } }, _directoryReader.GetListOfFileNames(dictionaryOfPathsAndNames));
         }
+
         [TearDown]
         public void TearDown()
         {
-            System.GC.Collect();
-            System.GC.WaitForPendingFinalizers();
-            //delete directory
-            System.IO.Directory.Delete(pathString, true);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            Directory.Delete(pathString, true);
         }
     }
 }
