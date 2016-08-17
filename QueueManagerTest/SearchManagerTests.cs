@@ -80,10 +80,5 @@ namespace QueueManagerTest
             List<string> listToSearch = new List<string>() { "The word", "alpha add", "beta sdf" };
             Assert.AreEqual(new List<string>() { "The word" }, _searchManager.SearchFor(listToSearch, "the wo"));
         }
-        [TearDown]
-        public void TearDown()
-        {
-            //TODO: Maybe nothing. But this should still be here.
-        }
     }
 }

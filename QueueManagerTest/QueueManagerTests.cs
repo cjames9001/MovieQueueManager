@@ -29,10 +29,7 @@ namespace QueueManagerTest
             }
             _testFileName = "testQueue.txt";
             _pathWithFile = Path.Combine(_pathString, _testFileName);
-            if (!File.Exists(_pathWithFile))
-            {
-                File.Create(_pathWithFile).Dispose();
-            }
+            File.Create(_pathWithFile).Dispose();
             _testFile = new StreamWriter(_pathWithFile);
             _linesInFile = new List<string> { "Cherry Bomb (2010)", "The Tyler Perry Collection: Why Did I Get Married? - Stage Play (2006)", "Joe Dirt (2001)", "Kicking and Screaming (2005)"  };
             foreach(string line in _linesInFile)

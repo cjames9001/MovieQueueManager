@@ -27,10 +27,7 @@ namespace QueueManagerTest
             _queueFileManager = new QueueFileManager();
             _upperLevelFolderName = @"..\..\Test Files\";
             _pathString = Path.GetFullPath(_upperLevelFolderName);
-            if (!Directory.Exists(_pathString))
-            {
-                Directory.CreateDirectory(_pathString);
-            }
+            Directory.CreateDirectory(_pathString);
             _newFileName = "NewFile";
             _newFilePath = Path.Combine(_pathString, _newFileName);
             _invalidFileName = "InvalidFile";
