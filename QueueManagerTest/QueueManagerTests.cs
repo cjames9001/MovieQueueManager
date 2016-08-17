@@ -23,10 +23,7 @@ namespace QueueManagerTest
             _queueManager = new QueueManagers();
             _upperLevelFolderName = @"..\..\Test Files\";
             _pathString = Path.GetFullPath(_upperLevelFolderName);
-            if (!Directory.Exists(_pathString))
-            {
-                Directory.CreateDirectory(_pathString);
-            }
+            Directory.CreateDirectory(_pathString);
             _testFileName = "testQueue.txt";
             _pathWithFile = Path.Combine(_pathString, _testFileName);
             File.Create(_pathWithFile).Dispose();
