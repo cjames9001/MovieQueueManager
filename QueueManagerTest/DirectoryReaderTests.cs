@@ -15,7 +15,7 @@ namespace QueueManagerTest
         private string _appendedPathString;
         private List<string> _filesInUpperLevelFolder;
         private Dictionary<string, string> _testFiles;
-        private string appendedFileName;
+        private string _appendedFileName;
 
         [SetUp]
         public void SetUp()
@@ -34,9 +34,9 @@ namespace QueueManagerTest
             _filesInUpperLevelFolder = new List<string>();
             foreach(KeyValuePair<string,string> item in _testFiles)
             {
-                appendedFileName = item.Key + item.Value;
-                _filesInUpperLevelFolder.Add(appendedFileName);
-                _appendedPathString = Path.Combine(_pathString, appendedFileName);
+                _appendedFileName = item.Key + item.Value;
+                _filesInUpperLevelFolder.Add(_appendedFileName);
+                _appendedPathString = Path.Combine(_pathString, _appendedFileName);
                 File.Create(_appendedPathString);
             }
         }

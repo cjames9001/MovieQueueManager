@@ -143,7 +143,7 @@ namespace QueueManagerTest
         {
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            Directory.Delete(_pathString,true);
+            Directory.Delete(_pathString, true);
         }
     }
 }
