@@ -33,8 +33,10 @@ namespace QueueManager
 
         public string RemoveShortcutText(string filename)
         {
-            filename = filename.Replace("- Shortcut", string.Empty);
-            filename = filename.Replace("-Shortcut", string.Empty);
+            if(filename.Contains("- Shortcut"))
+            {
+                filename = filename.Remove(filename.IndexOf("- Shortcut"));
+            }
             filename = filename.Replace(".iso", string.Empty).Trim();
             return filename;
         }
