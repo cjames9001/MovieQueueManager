@@ -10,6 +10,7 @@ namespace QueueManagerTest
     public class QueueManagerTests
     {
         QueueManagers _queueManager;
+        TestManager _testManager;
         string _pathString;
         string _upperLevelFolderName;
         string _testFileName;
@@ -21,6 +22,7 @@ namespace QueueManagerTest
         public void SetUp()
         {
             _queueManager = new QueueManagers();
+            _testManager = new TestManager();
             _upperLevelFolderName = @"..\..\Test Files\";
             _pathString = Path.GetFullPath(_upperLevelFolderName);
             Directory.CreateDirectory(_pathString);
@@ -135,9 +137,7 @@ namespace QueueManagerTest
         [TearDown]
         public void TearDown()
         {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            Directory.Delete(_pathString, true);
+            _testManager.RemoveDirectory(_pathString);
         }
     }
 }

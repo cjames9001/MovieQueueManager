@@ -80,6 +80,7 @@
     <Compile Include="QueueManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchManagerTests.cs" />
+    <Compile Include="TestManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QueueManager\QueueManager.csproj">

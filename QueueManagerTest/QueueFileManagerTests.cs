@@ -11,6 +11,7 @@ namespace QueueManagerTest
     {
         List<string> _movieList;
         QueueFileManager _queueFileManager;
+        TestManager _testManager;
         string _upperLevelFolderName;
         string _pathString;
         string _newFileName;
@@ -25,6 +26,7 @@ namespace QueueManagerTest
             _movieList.Add("movie1");
             _movieList.Add("movie2");
             _queueFileManager = new QueueFileManager();
+            _testManager = new TestManager();
             _upperLevelFolderName = @"..\..\Test Files\";
             _pathString = Path.GetFullPath(_upperLevelFolderName);
             Directory.CreateDirectory(_pathString);
@@ -68,9 +70,7 @@ namespace QueueManagerTest
         [TearDown]
         public void TearDown()
         {
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            Directory.Delete(_pathString,true);
+            _testManager.RemoveDirectory(_pathString);
         }
     }
 }
